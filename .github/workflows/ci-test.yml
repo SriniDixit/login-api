@@ -1,0 +1,23 @@
+name: ci-test
+on: 
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v2
+            - name: Setup Node
+              uses: actions/setup-node@V2
+              with:
+                node-version: 22.x
+            - name: Install Dependencies
+              run: npm ci
+            - name: Test
+              run: npm run test          
